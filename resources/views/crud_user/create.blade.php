@@ -1,44 +1,122 @@
-@extends('dashboard')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        header,
+        footer,
+        .content {
+            text-align: center;
+            border: 2px solid black;
+            margin-bottom: 100px;
+        }
 
-@section('content')
-    <main class="signup-form">
-        <div class="cotainer">
-            <div class="row justify-content-center">
-                <div class="col-md-4">
-                    <div class="card">
-                        <h3 class="card-header text-center">Create User</h3>
-                        <div class="card-body">
-                            <form action="{{ route('user.postUser') }}" method="POST">
-                                @csrf
-                                <div class="form-group mb-3">
-                                    <input type="text" placeholder="Name" id="name" class="form-control" name="name"
-                                           required autofocus>
-                                    @if ($errors->has('name'))
-                                        <span class="text-danger">{{ $errors->first('name') }}</span>
-                                    @endif
-                                </div>
-                                <div class="form-group mb-3">
-                                    <input type="text" placeholder="Email" id="email_address" class="form-control"
-                                           name="email" required autofocus>
-                                    @if ($errors->has('email'))
-                                        <span class="text-danger">{{ $errors->first('email') }}</span>
-                                    @endif
-                                </div>
-                                <div class="form-group mb-3">
-                                    <input type="password" placeholder="Password" id="password" class="form-control"
-                                           name="password" required>
-                                    @if ($errors->has('password'))
-                                        <span class="text-danger">{{ $errors->first('password') }}</span>
-                                    @endif
-                                </div>
-                                <div class="d-grid mx-auto">
-                                    <button type="submit" class="btn btn-dark btn-block">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+        footer{
+            margin-bottom: 0;
+            inset: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            margin: 5px;
+            color: black;
+        }
+
+        .content {
+            width: 500px;
+            height: 400px;
+            left: calc((100% - 500px)/2);
+            top: 0;
+            position: relative;
+        }
+
+
+        .button {
+            display: inline-flex;
+            margin-top: 50px;
+            width: 90%;
+            left: 30%;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .register-btn {
+            background-color: aqua;
+            border-radius: 3px;
+            width: 30%;
+            height: 40px;
+        }
+
+        .label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .label label {
+            width: 100px;
+            text-align: right;
+            margin-right: 10px;
+        }
+        .label input {
+            flex: 0.8;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <ul>
+            <li>
+                <a href="">Home</a>
+                <a href="{{ route('login') }}">Đăng nhập</a>
+                <a href="" style="font-weight: bold;">Đăng ký</a>
+            </li>
+        </ul>
+    </header>
+    <div class="content">
+        <div class="login-box">
+            <div class="title">
+                <h3>Màn hình đăng ký</h3>
+            </div>
+            <div class="username label">
+                <label for="username">Username</label>
+                <input type="text" name="username" placeholder="Username">
+            </div>
+            <br>
+            <div class="password label">
+                <label for="password">Password</label>
+                <input type="text" name="password" placeholder="Password">
+            </div>
+            <br>
+            <div class="password label">
+                <label for="re-password">Re-Password</label>
+                <input type="text" name="re-password" placeholder="Re-password">
+            </div>
+            <br>
+            <div class="mail label">
+                <label for="mail">Mail</label>
+                <input type="text" name="mail" placeholder="Mail">
+            </div>
+
+            <div class="button">
+                <div class="login-btn"><a href="./login.html">Đã có tài khoản</a></div>
+
+                <button class="register-btn" type="button">Đăng ký</button>
             </div>
         </div>
-    </main>
-@endsection
+    </div>
+    <footer>
+        <h4>Lập trình web @2024</h4>
+    </footer>
+</body>
+</html>

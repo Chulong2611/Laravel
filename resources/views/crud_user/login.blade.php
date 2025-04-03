@@ -1,43 +1,129 @@
-@extends('dashboard')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-    <main class="login-form">
-        <div class="cotainer">
-            <div class="row justify-content-center">
-                <div class="col-md-4">
-                    <div class="card">
-                        <h3 class="card-header text-center">Login</h3>
-                        <div class="card-body">
-                            <form method="POST" action="{{ route('user.authUser') }}">
-                                @csrf
-                                <div class="form-group mb-3">
-                                    <input type="text" placeholder="Email" id="email" class="form-control" name="email" required
-                                           autofocus>
-                                    @if ($errors->has('email'))
-                                        <span class="text-danger">{{ $errors->first('email') }}</span>
-                                    @endif
-                                </div>
-                                <div class="form-group mb-3">
-                                    <input type="password" placeholder="Password" id="password" class="form-control" name="password" required>
-                                    @if ($errors->has('password'))
-                                        <span class="text-danger">{{ $errors->first('password') }}</span>
-                                    @endif
-                                </div>
-                                <div class="form-group mb-3">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="remember"> Remember Me
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="d-grid mx-auto">
-                                    <button type="submit" class="btn btn-dark btn-block">Signin</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        header,
+        footer,
+        .content {
+            text-align: center;
+            border: 2px solid black;
+            margin-bottom: 100px;
+        }
+
+        footer{
+            margin-bottom: 0;
+            inset: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            margin: 5px;
+            color: black;
+        }
+
+        .content {
+            width: 500px;
+            height: 300px;
+            left: calc((100% - 500px)/2);
+            top: 0;
+            position: relative;
+        }
+
+        label {
+            margin-right: 50px;
+        }
+
+        .checkbox {
+            display: block;
+            margin: 10px 10px;
+            align-items: center;
+        }
+
+        .button {
+            display: inline-flex;
+            margin-top: 50px;
+            width: 40%;
+            left: 40%;
+            align-items: center;
+            text-align: center;
+            position: fixed;
+        }
+
+        .login-btn {
+            background-color: aqua;
+            border-radius: 3px;
+            width: 30%;
+            height: 40px;
+        }
+
+        .label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .label label {
+            width: 100px;
+            text-align: right;
+            margin-right: 10px;
+        }
+        .label input {
+            flex: 0.8;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+       
+    </style>
+</head>
+
+<body>
+    <header>
+        <ul>
+            <li>
+                <a href="">Home</a>
+                <a href="#" style="font-weight: bold;">Đăng nhập</a>
+                <a href="{{ route('user.createUser') }}">Đăng ký</a>
+            </li>
+        </ul>
+    </header>
+    <div class="content">
+        <div class="login-box">
+            <div class="title">
+                <h3>Màn hình đăng nhập</h3>
+            </div>
+            <div class="username label">
+                <label for="username">Username</label>
+                <input type="text" name="username" placeholder="Username">
+            </div>
+            <br>
+            <div class="password label">
+                <label for="password">Password</label>
+                <input type="text" name="password" placeholder="Password">
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" name="remember-me" id=""><label for="remember-me">Ghi nhớ đăng
+                    nhập</label>
+            </div>
+            <div class="button">
+                <div class="forget-pass"><a href="">Quên mật khẩu</a></div>
+
+                <button class="login-btn" type="button">Đăng nhập</button>
             </div>
         </div>
-    </main>
-@endsection
+    </div>
+    <footer>
+        <h4>Lập trình web @2024</h4>
+    </footer>
+</body>
+
+</html>
