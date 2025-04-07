@@ -12,29 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->integer('user_id', 11)->autoIncrement();
-            $table->string('user_name', 25)->notNull();
-            $table->string('user_email', 55)->notNull()->unique();
-            $table->string('user_pass', 255)->notNull();
-            $table->dateTime('updated_at')->nullable();
-            $table->dateTime('created_at')->nullable();
-        });
-
-        Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
-        });
-
-        Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
-            $table->string('ip_address', 45)->nullable();
-            $table->text('user_agent')->nullable();
-            $table->longText('payload');
-            $table->integer('last_activity')->index();
+            $table->id();
+            $table->string('name');
+            $table->string('phone');
+            $table->string('address');
+            $table->string('like');
+            $table->string('linkfb');
+            $table->string('avatar')->nullable();
+            $table->string('email', 100)->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.
@@ -42,7 +34,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
-        Schema::dropIfExists('sessions');
     }
 };

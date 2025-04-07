@@ -1,11 +1,74 @@
-@extends('dashboard')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         header,
+        footer {
+            text-align: center;
+            border: 2px solid black;
+            margin-bottom: 100px;
+        }
 
-@section('content')
-    <main class="login-form">
-        <div class="container">
-            <div class="row justify-content-center">
-                <table>
-                    <thead>
+        footer{
+            margin-bottom: 0;
+            inset: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            margin: 5px;
+            color: black;
+        }
+
+        .content{
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            margin: 50px;
+            text-align: center;
+        }
+        .pagination a {
+            margin: 0 5px;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <ul>
+            <li>
+                <a href="">Home</a>
+                <a href="#" style="font-weight: bold;">Đăng xuất</a>
+            </li>
+        </ul>
+    </header>
+    <div class="content">
+        <h2>Danh sách user</h2>
+    <table>
+    <thead>
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
@@ -27,8 +90,17 @@
                             </tr>
                         @endforeach
                     </tbody>
-                </table>
-            </div>
-        </div>
-    </main>
-@endsection
+    </table>
+    </div>
+    <div class="pagination">
+        <a href="#">Previous</a>
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">Next</a>
+    </div>
+    <footer>
+        <h4>Lập trình web @2024</h4>
+    </footer>
+</body>
+</html>

@@ -101,14 +101,23 @@
             <div class="title">
                 <h3>Màn hình đăng nhập</h3>
             </div>
+            <form method="POST" action="{{ route('user.authUser') }}">
+            @csrf
             <div class="username label">
                 <label for="username">Username</label>
-                <input type="text" name="username" placeholder="Username">
+                <input type="text" placeholder="Email" id="name" class="form-control" name="name" required
+                                           autofocus>
+                                    @if ($errors->has('name'))
+                                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                                    @endif
             </div>
             <br>
             <div class="password label">
                 <label for="password">Password</label>
-                <input type="text" name="password" placeholder="Password">
+                <input type="password" placeholder="Password" id="password" class="form-control" name="password" required>
+                                    @if ($errors->has('password'))
+                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                    @endif
             </div>
             <div class="checkbox">
                 <input type="checkbox" name="remember-me" id=""><label for="remember-me">Ghi nhớ đăng
@@ -117,8 +126,9 @@
             <div class="button">
                 <div class="forget-pass"><a href="">Quên mật khẩu</a></div>
 
-                <button class="login-btn" type="button">Đăng nhập</button>
+                <button class="login-btn" type="submit">Đăng nhập</button>
             </div>
+    </form>
         </div>
     </div>
     <footer>

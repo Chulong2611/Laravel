@@ -1,10 +1,75 @@
-@extends('dashboard')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         header,
+        footer {
+            text-align: center;
+            border: 2px solid black;
+            margin-bottom: 100px;
+        }
 
-@section('content')
-    <main class="login-form">
-        <div class="container">
-            <div class="row justify-content-center">
-                <table>
+        footer{
+            margin-bottom: 0;
+            inset: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            margin: 5px;
+            color: black;
+        }
+
+        .content {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            text-align: left;
+        }
+        .content h2 {
+            text-align: center;
+        }
+        .detail {
+            margin-bottom: 15px;
+        }
+        .detail label {
+            font-weight: bold;
+        }
+        .edit-button {
+            display: block;
+            width: 50%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <ul>
+            <li>
+                <a href="">Home</a>
+                <a href="#" style="font-weight: bold;">Đăng xuất</a>
+            </li>
+        </ul>
+    </header>
+    <div class="content">
+        <h2>Màn hình chi tiết</h2>
+        <table>
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -20,7 +85,11 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </main>
-@endsection
+        <a href="" class="edit-button">Chỉnh sửa</a>
+    </div>
+     
+    <footer>
+        <h4>Lập trình web @2024</h4>
+    </footer>
+</body>
+</html>

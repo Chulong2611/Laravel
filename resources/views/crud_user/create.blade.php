@@ -88,31 +88,80 @@
             <div class="title">
                 <h3>Màn hình đăng ký</h3>
             </div>
+            <form action="{{ route('user.postUser') }}" method="POST">
+            @csrf
             <div class="username label">
                 <label for="username">Username</label>
-                <input type="text" name="username" placeholder="Username">
+                <input type="text" placeholder="Name" id="name" class="form-control" name="name"
+                                           required autofocus>
+                                    @if ($errors->has('name'))
+                                        <span class="text-danger">{{ $errors->first('name') }}</span>
+                                    @endif
             </div>
             <br>
-            <div class="password label">
-                <label for="password">Password</label>
-                <input type="text" name="password" placeholder="Password">
+            <div class="phone label">
+                <label for="phone">Phone</label>
+                <input type="text" placeholder="Phone" id="phone" class="form-control" name="phone"
+                                           required autofocus>
+                                    @if ($errors->has('phone'))
+                                        <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                    @endif
             </div>
             <br>
-            <div class="password label">
-                <label for="re-password">Re-Password</label>
-                <input type="text" name="re-password" placeholder="Re-password">
+            <div class="address label">
+                <label for="address">Address</label>
+                <input type="text" placeholder="Address" id="name" class="form-control" name="address"
+                                           required autofocus>
+                                    @if ($errors->has('address'))
+                                        <span class="text-danger">{{ $errors->first('address') }}</span>
+                                    @endif
             </div>
             <br>
+
+            <div class="like label">
+                <label for="like">so thich</label>
+                <input type="text" placeholder="so thich" id="name" class="form-control" name="like"
+                                           required autofocus>
+                                    @if ($errors->has('like'))
+                                        <span class="text-danger">{{ $errors->first('like') }}</span>
+                                    @endif
+            </div>
+            <br>
+
+            <div class="linkfb label">
+                <label for="linkfb">Link</label>
+                <input type="text" placeholder="link fb" id="linkfb" class="form-control" name="linkfb"
+                                           required autofocus>
+                                    @if ($errors->has('linkfb'))
+                                        <span class="text-danger">{{ $errors->first('linkfb') }}</span>
+                                    @endif
+            </div>
+            <br>
+
             <div class="mail label">
                 <label for="mail">Mail</label>
-                <input type="text" name="mail" placeholder="Mail">
+                <input type="text" placeholder="Email" id="email_address" class="form-control"
+                                           name="email" required autofocus>
+                                    @if ($errors->has('email'))
+                                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                                    @endif
             </div>
-
+            <div class="password label">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password" id="password" class="form-control"
+                                           name="password" required>
+                                    @if ($errors->has('password'))
+                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                    @endif
+            </div>
+            <br>
+           
             <div class="button">
                 <div class="login-btn"><a href="./login.html">Đã có tài khoản</a></div>
 
-                <button class="register-btn" type="button">Đăng ký</button>
+                <button class="register-btn" type="submit">Đăng ký</button>
             </div>
+    </form>
         </div>
     </div>
     <footer>

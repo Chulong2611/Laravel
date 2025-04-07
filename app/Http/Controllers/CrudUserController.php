@@ -7,6 +7,7 @@ use Session;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class CrudUserController extends Controller
 {
@@ -24,11 +25,11 @@ class CrudUserController extends Controller
     public function authUser(Request $request)
     {
         $request->validate([
-            'email' => 'required',
+            'name' => 'required',
             'password' => 'required',
         ]);
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('name', 'password');
 
         if (Auth::attempt($credentials)) {
             return redirect()->intended('list')
@@ -60,6 +61,10 @@ class CrudUserController extends Controller
         $data = $request->all();
         $check = User::create([
             'name' => $data['name'],
+            'phone' => $data['phone'],
+            'address' => $data['address'],
+            'like' => $data['like'],
+            'linkfb' => $data['linkfb'],
             'email' => $data['email'],
             'password' => Hash::make($data['password'])
         ]);
@@ -109,12 +114,28 @@ class CrudUserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,id,'.$input['id'],
             'password' => 'required|min:6',
+            'avatar' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
        $user = User::find($input['id']);
        $user->name = $input['name'];
        $user->email = $input['email'];
        $user->password = $input['password'];
+       $user->phone = $input['phone'];
+       $user->address = $input['address'];
+       $user->like = $input['like'];
+       $user->linkfb = $input['linkfb'];
+
+          // Xóa avatar cũ nếu có
+          if ($user->avatar && storage::exists($user->avatar)) {
+            Storage::delete($user->avatar);
+        }
+
+        // Lưu ảnh vào thư mục storage/app/public/avatars/
+        $path = $request->file('avatar')->store('avatars', 'public');
+        $user->avatar = $path;
+        
+        // Cập nhật avatar cho user
        $user->save();
 
         return redirect("list")->withSuccess('You have signed-in');
