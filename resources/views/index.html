@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js">
+
+    <title>Agricoma Navigation Bar</title>
+    <style>
+        .nav-bar {
+            position: relative;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            min-height: 85px;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 100%;
+            position: relative;
+        }
+
+        .header-left {
+            justify-content: flex-start;
+            width: 100px;
+        }
+
+        .header-middle {
+            flex: 1 1 auto;
+            max-width: 500px;
+        }
+
+        .header-right {
+            justify-content: flex-end;
+        }
+
+        .search-bar {
+            border-radius: 50px;
+            display: flex;
+            position: relative;
+            width: 100%;
+            height: 50px;
+            padding: 10px;
+            border: 1px solid black;
+            align-items: center;
+        }
+
+        .search-bar input {
+            border: 0;
+            background-color: transparent;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            box-shadow: none;
+            border-color: transparent;
+            background-color: transparent;
+        }
+
+        .category-select-wrapper {
+            justify-content: center;
+            width: max-content;
+            display: flex;
+            padding: 0 15px;
+            position: relative;
+            height: 100%;
+            border-right: 1px solid;
+            cursor: pointer;
+        }
+
+        .category-select-wrapper .drop-list {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        .category-select-wrapper .category-list {
+            position: absolute;
+            visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            padding: 15px;
+            list-style: none;
+            overflow-y: auto;
+            max-height: 200px;
+            width: 100%;
+            top: 105%;
+            left: 0;
+            z-index: 999;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <div class="nav-bar">
+            <div class="header-inner">
+
+                <!--phan logo -->
+                <div class="header-left">
+                    <img src="../../public/storage/avatars/IliPRvFqu1rFiz5wirkyVRJk5TXzksFicE81EL2o.jpg" alt="" style="width: 100%;">
+                </div>
+
+                <!-- search bar -->
+                <div class="header-middle style-circle">
+                    <form class="search-bar">
+                        <input class="form-control" type="search" placeholder="Search for products">
+                        <div class="category-select-wrapper">
+                            <div class="drop-list" data-val>
+                                <span class="cat-name" data-val="">All</span>
+                                <span class="fa-solid fa-chevron-down"></span>
+                            </div>
+                            <ul class="category-list">
+                                <li class="empty-cat" data-val>All</li>
+
+                            </ul>
+                        </div>
+                        <button class="btn" type="submit" title="Search"><i
+                                class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
+                </div>
+
+                <!-- cart, sp yeu thich, nguoi dung-->
+                <div class="header-right">
+                    
+                </div>
+            </div>
+        </div>
+
+
+    </header>
+
+</body>
+
+</html>
