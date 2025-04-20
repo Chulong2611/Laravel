@@ -22,13 +22,13 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    @include('partials.header')
+    @include('user.layouts.header')
 
     <main>
         @yield('content')
     </main>
 
-    @include('partials.footer')
-
+    @include('user.layouts.footer')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
