@@ -13,6 +13,11 @@
 
     {{-- Custom CSS --}}
     @vite(['resources/css/admin.css', 'resources/js/app.js'])
+    @if(session('success'))
+    <div class="alert alert-success m-3">
+        {{ session('success') }}
+    </div>
+@endif
 </head>
 <body>
 

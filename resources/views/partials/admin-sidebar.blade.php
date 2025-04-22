@@ -15,6 +15,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.categories') ? 'active' : '' }}" 
+               href="{{ route('admin.categories') }}">
+                <i class="fa-solid fa-boxes-stacked me-2"></i> Categories
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.products') ? 'active' : '' }}" 
                href="{{ route('admin.products') }}">
                 <i class="fa-solid fa-boxes-stacked me-2"></i> Products

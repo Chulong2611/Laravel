@@ -1,16 +1,79 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProductController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 Route::get('/', function () {
     return view('test');
 });
 
+Route::view('admin/', 'admin.login')->name('login');
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::post('admin/', function (Request $request) {
+    $credentials = $request->only('name', 'password');
+
+    if (Auth::guard('admin')->attempt($credentials)) {
+        return redirect()->route('admin.dashboard');
+    }
+
+    return back()->withErrors(['email' => 'Thông tin đăng nhập sai']);
+    })->name('admin.login.submit');
+
+Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function () {
+    
+    Route::post('/logout', function () {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.dashboard');
+    })->name('logout');
+
+    /**----------------------------------------------------------------- */
+
     Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
-    Route::view('/users', 'admin.users')->name('users');
-    Route::view('/products', 'admin.products')->name('products');
-    Route::view('/orders', 'admin.orders')->name('orders');
-});
 
+    /**----------------------------------------------------------------- */
+
+    /* user */
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+
+    /*them user*/
+    Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/user', [UserController::class, 'store'])->name('user.store');
+    /*sua user*/
+    Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+    /**xoa user*/
+    Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+
+    /**----------------------------------------------------------------- */
+
+
+    /** category */
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+    Route::get('/category/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/category', [CategoryController::class, 'store'])->name('categories.store');
+
+    Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('/category/{id}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+    /**----------------------------------------------------------------- */
+
+
+    /** product */
+    Route::get('/products', [ProductController::class, 'index'])->name('products');
+    Route::get('/product/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('/product', [ProductController::class, 'store'])->name('products.store');
+
+    Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/product/{id}', [ProductController::class, 'update'])->name('products.update');
+    Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+    Route::view('/orders', 'admin.orders')->name('orders');
+
+    
+});
