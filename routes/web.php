@@ -9,7 +9,11 @@ use Illuminate\Http\Request;
 
 
 Route::get('/', function () {
-    return view('test');
+    return view('index');
+});
+
+Route::get('/index', function () {
+    return view('index');
 });
 
 Route::view('admin/', 'admin.login')->name('login');

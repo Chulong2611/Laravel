@@ -1,0 +1,158 @@
+   /* banner */
+   .banner {
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-swip {
+    display: flex;
+    width: 100%;
+}
+
+
+.banner-slide .btn-banner {
+    position: absolute;
+    top: 80%;
+    left: 45%;
+    border-radius: 20px;
+    border: #000 2px solid;
+    width: 150px;
+    height: 40px;
+    background-color: #fff;
+    color: #000;
+    font-size: 1.2rem;
+}
+
+.banner-slide .btn-banner-2 {
+    top: 48%;
+    left: 10%;
+}
+
+.banner-slide .btn-banner:hover {
+    border: #000 3px solid;
+    background-color: #a03838;
+    color: #fff;
+    transition: 500ms;
+}
+
+/* Nút custom banner */
+.custom-nav {
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s ease;
+}
+
+.custom-nav:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.swiper-button::after {
+    font-size: 18px;
+    display: none;
+}
+
+/* chung */
+
+.content {
+    padding: 30px 0;
+    border-bottom: 1px solid #5b5757;
+}
+
+.tab-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: relative;
+    margin-bottom: 20px;
+    font-family: "Roboto", sans-serif, 700;
+    color: #000;
+}
+
+/* phần categories */
+
+.categories .tab-header a {
+    color: #000;
+    text-decoration: none;
+}
+
+.categories .tab-header a:hover {
+    color: #980000;
+}
+
+.category-items {
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap;
+    width: max-content;
+}
+
+.category-button {
+    width: 160px;
+    height: 50px;
+    background-color: rgba(25, 135, 84, 1);
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+.category-button:hover {
+    background-color: rgba(25, 135, 84, 0.8);
+    color: #980000;
+}
+
+.cate {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.category-slider-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.cat-swip {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: rgba(25, 135, 84, 1);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.cat-swip:hover {
+    opacity: 0.7;
+    background-color: rgb(39, 206, 128);
+    transition: background 0.3s ease;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 1%;
+}
+
+.carousel-control-prev i,
+.carousel-control-next i {
+    padding: 8px;
+    border: #000 0.5px solid;
+}
