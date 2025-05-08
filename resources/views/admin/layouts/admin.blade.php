@@ -17,11 +17,11 @@
 <body>
 
     {{-- Navbar --}}
-    @include('partials.admin-header')
+    @include('admin.layouts.header')
 
     <div class="d-flex">
         {{-- Sidebar --}}
-        @include('partials.admin-sidebar')
+        @include('admin.layouts.sidebar')
 
         {{-- Main content --}}
         <main class="flex-grow-1 p-4 bg-white">

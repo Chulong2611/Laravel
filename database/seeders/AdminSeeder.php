@@ -4,20 +4,18 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Category;
+use App\Models\Admin;
 
-class CategorySeeder extends Seeder
+class AdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Category::insert([
-        ['name' => 'test1'],
-        ['name' => 'test2'],
-        ['name' => 'test3'],
-        ['name' => 'test4'],
-        ]);     
+        Admin::create([
+            'name' => 'admin',
+            'password' => bcrypt('123456'),
+        ]);
     }
 }
