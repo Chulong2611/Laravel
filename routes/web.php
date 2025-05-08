@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\OrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -32,14 +33,14 @@ Route::post('admin/', function (Request $request) {
     }
 
     return back()->withErrors(['name' => 'Thông tin đăng nhập sai']);
-    })->name('admin.login.submit');
+})->name('admin.login.submit');
+
+Route::post('/logout', function () {
+    Auth::guard('admin')->logout();
+    return redirect()->route('admin.login');
+})->name('admin.logout');
 
 Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function () {
-    
-    Route::post('/logout', function () {
-        Auth::guard('admin')->logout();
-        return redirect()->route('admin.dashboard');
-    })->name('logout');
 
     /**----------------------------------------------------------------- */
 
@@ -83,7 +84,15 @@ Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(functi
     Route::put('/product/{id}', [ProductController::class, 'update'])->name('products.update');
     Route::delete('/product/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 
-    Route::view('/orders', 'admin.orders')->name('orders');
+    /**----------------------------------------------------------------- */
 
-    
+
+    /** order */
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders');
+    Route::get('/order/create', [OrderController::class, 'create'])->name('orders.create');
+    Route::post('/order', [OrderController::class, 'store'])->name('orders.store');
+
+    Route::get('/order/{id}/edit', [OrderController::class, 'edit'])->name('orders.edit');
+    Route::put('/order/{id}', [OrderController::class, 'update'])->name('orders.update');
+    Route::delete('/order/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
 });
