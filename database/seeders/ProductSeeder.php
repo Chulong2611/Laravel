@@ -27,6 +27,15 @@ class ProductSeeder extends Seeder
                 'image' => 'uploads/products/nuoc-ep-cam-tao.webp',
                 'created_at' => now(),
                 'updated_at' => now(),
+            ],
+            [
+                'name' => 'Sản phẩm 3',
+                'price' => 150000,
+                'quantity' => 5,
+                'category_id' => 2,
+                'image' => 'uploads/products/nuoc-ep-cam-tao.webp',
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
     }

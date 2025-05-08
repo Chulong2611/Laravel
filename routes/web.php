@@ -19,3 +19,7 @@ Route::prefix('')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('user.home');
 });
 
+Route::get('/login', function () {
+    return view('user.login');
+});
+

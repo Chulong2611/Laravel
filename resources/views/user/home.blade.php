@@ -4,6 +4,7 @@
 
 @section('content')
     @include('user.partials.banner-carousel')
+    @include('user.partials.categories')
 
     <div class="container mt-5">
         <!--<h4 class="mb-3">Sản phẩm mới</h4>--->

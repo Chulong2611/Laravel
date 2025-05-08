@@ -14,7 +14,10 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         Category::create([
-        'name' => 'test',
+        ['name' => 'test1'],
+        ['name' => 'test2'],
+        ['name' => 'test3'],
+        ['name' => 'test4'],
         ]);     
     }
 }

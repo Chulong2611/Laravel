@@ -4,7 +4,7 @@
 
                 <!--phan logo -->
                 <div class="header-col header-left">
-                    <a href=""><img src="../../storage/app/public/images/logo/logo2.png" alt="" width="100px"></a>
+                    <a href=""><img src="{{ asset('storage/uploads/logo/logo1.png') }}" alt="logo" class="img-fluid"></a>
                 </div>
 
                 <!-- search bar -->
