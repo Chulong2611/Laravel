@@ -2,49 +2,83 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\UserProfileController;
 use Illuminate\Http\Request;
 
 
+// ----------- PHAN USER ------------------
+
 
 Route::prefix('')->group(function () {
+    // Trang chủ user
     Route::get('/', [HomeController::class, 'index'])->name('user.home');
+
+    // Đăng nhập
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+
+    // Đăng ký
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+
+    // Đăng xuất (user)
+    Route::post('/logout', function () {
+        Auth::logout();
+        return redirect()->route('user.home');
+    })->name('logout');
+
+    //search
+    Route::get('/search', [HomeController::class, 'search'])->name('search');
+
 });
 
-Route::get('/login', function () {
-    return view('user.login');
+Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
+
+    //thong tin ca nhan
+    Route::get('/profile', [UserProfileController::class, 'show'])->name('profile');
+    Route::get('/profile/edit', [UserProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/update', [UserProfileController::class, 'update'])->name('profile.update');
+
+    //doi mk
+    Route::get('/change-password', [UserProfileController::class, 'showChangePasswordForm'])->name('password.change');
+    Route::post('/change-password', [UserProfileController::class, 'changePassword'])->name('password.update');
 });
 
 
 
 
 
-Route::view('admin/', 'admin.login')->name('login');
+// ----------- PHAN ADMIN ------------------
+
+Route::view('admin/', 'admin.login')->name('admin.login');
 
 Route::post('admin/', function (Request $request) {
     $credentials = $request->only('name', 'password');
-
+    
     if (Auth::guard('admin')->attempt($credentials)) {
         return redirect()->route('admin.dashboard');
     }
-
+    
     return back()->withErrors(['name' => 'Thông tin đăng nhập sai']);
 })->name('admin.login.submit');
 
-Route::post('/logout', function () {
-    Auth::guard('admin')->logout();
-    return redirect()->route('admin.login');
-})->name('admin.logout');
 
 Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(function () {
-
+    
+    Route::post('/logout', function () {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
+    })->name('logout');
     /**----------------------------------------------------------------- */
 
-    Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
     /**----------------------------------------------------------------- */
 

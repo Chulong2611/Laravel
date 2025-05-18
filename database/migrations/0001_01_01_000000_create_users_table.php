@@ -16,13 +16,11 @@ return new class extends Migration
 
             $table->string('username')->unique();
             $table->string('fullname');
-            $table->year('birth_year')->nullable();
-            $table->string('phone', 20)->nullable();
-
-            $table->string('email')->nullable(); // nếu dùng đăng nhập sau này
-            $table->string('password')->nullable(); // nếu dùng auth
+            $table->year('birth_year');
+            $table->string('phone', 20);
+            $table->string('email'); // nếu dùng đăng nhập sau này
+            $table->string('password'); // nếu dùng auth
             $table->rememberToken();
-
             $table->timestamps();
         });
 

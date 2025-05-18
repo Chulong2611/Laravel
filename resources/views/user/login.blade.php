@@ -1,94 +1,110 @@
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 
 <head>
-    <title>Login Page</title>
-    <!--Bootsrap 5 CDN-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #eafaf1;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-    <!--Fontawesome CDN-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-    <!--Custom styles-->
-    <link rel="stylesheet" type="{{asset('assets/css/login-register.css')}}" href="styles.css">
+        .login-box {
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+
+        .login-image {
+            flex: 1;
+            background:url('storage/uploads/logo/logo-login.jpg');
+            /* Đổi link tùy ý */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .login-form {
+            flex: 1;
+            padding: 40px 30px;
+            background-color: #ffffff;
+        }
+
+        .btn-green {
+            background-color: #28a745;
+            border: none;
+        }
+
+        .btn-green:hover {
+            background-color: #218838;
+        }
+
+        .text-green {
+            color: #28a745;
+        }
+    </style>
 </head>
 
 <body>
-    <section class="vh-100">
-        <div class="container-fluid h-custom">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-md-9 col-lg-6 col-xl-5">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image">
-                </div>
-                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                        <!-- Email input -->
-                        <div class="form-outline mb-4">
-                            <input type="email" id="form3Example3" name="user_email" class="form-control form-control-lg" placeholder="Enter a valid email address" />
-                            <label class="form-label" for="form3Example3">Email address</label>
-                            @if ($errors->has('user_email'))
-                            <span class="text-danger">{{ $errors->first('user_email') }}</span>
-                            @endif
-                        </div>
+    <div class="login-wrapper">
+        <div class="login-box">
+            <div class="login-image d-none d-md-block"></div>
+            <div class="login-form">
+                <h4 class="mb-4 text-green text-center">Đăng nhập tài khoản</h4>
 
-                        <!-- Password input -->
-                        <div class="form-outline mb-3">
-                            <input type="password" id="form3Example4" name="password" class="form-control form-control-lg" placeholder="Enter password" />
-                            <label class="form-label" for="form3Example4">Password</label>
-                            @if ($errors->has('password'))
-                            <span class="text-danger">{{ $errors->first('password') }}</span>
-                            @endif
-                        </div>
+                @if(session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
 
-                        <div class="d-flex justify-content-between align-items-center">
-                            <!-- Checkbox -->
-                            <div class="form-check mb-0">
-                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                                <label class="form-check-label" for="form2Example3">
-                                    Remember me
-                                </label>
-                            </div>
-                            <a href="#" class="text-body">Forgot password?</a>
-                        </div>
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
 
-                        <div class="text-center text-lg-start mt-4 pt-2">
-                            <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-                           
-                        </div>
+                    <div class="mb-3">
+                        <label for="login" class="form-label">Tên đăng nhập hoặc Email</label>
+                        <input type="text" class="form-control" name="login" id="login" required value="{{ old('login') }}">
+                        @error('login')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
 
-                    </form>
-                </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Mật khẩu</label>
+                        <input type="password" class="form-control" name="password" id="password" required>
+                        @error('password')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3 text-end">
+                        <a href="" class="text-decoration-none text-green">Quên mật khẩu?</a>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-green text-white">Đăng nhập</button>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <span>Bạn chưa có tài khoản?</span>
+                        <a href="{{ route('register') }}" class="text-green text-decoration-none">Đăng ký ngay</a>
+                    </div>
+
+                </form>
             </div>
         </div>
-        <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-            <!-- Copyright -->
-            <div class="text-white mb-3 mb-md-0">
-                Copyright © 2020. All rights reserved.
-            </div>
-            <!-- Copyright -->
-
-            <!-- Right -->
-            <div>
-                <a href="#!" class="text-white me-4">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="#!" class="text-white me-4">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#!" class="text-white me-4">
-                    <i class="fab fa-google"></i>
-                </a>
-                <a href="#!" class="text-white">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-            </div>
-            <!-- Right -->
-        </div>
-    </section>
+    </div>
 </body>
 
 </html>
