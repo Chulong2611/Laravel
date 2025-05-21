@@ -1,20 +1,23 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
+//phan admin
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
-use Illuminate\Support\Facades\Auth;
+
+//phan user
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\FavouriteController;
+use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\UserProfileController;
-<<<<<<< Updated upstream
-use Illuminate\Http\Request;
-=======
 use App\Http\Controllers\User\ProductUserController;
->>>>>>> Stashed changes
 
 
 // ----------- PHAN USER ------------------
@@ -56,6 +59,17 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     //doi mk
     Route::get('/change-password', [UserProfileController::class, 'showChangePasswordForm'])->name('password.change');
     Route::post('/change-password', [UserProfileController::class, 'changePassword'])->name('password.update');
+
+      // Cart
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/update/{product}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/remove/{product}', [CartController::class, 'remove'])->name('cart.remove');
+
+    // Favourites
+    Route::get('/favorites', [FavouriteController::class, 'index'])->name('favorites');
+    Route::post('/favorites/add/{product}', [FavouriteController::class, 'add'])->name('favorites.add');
+    Route::delete('/favorites/remove/{product}', [FavouriteController::class, 'remove'])->name('favorites.remove');
 });
 
 
