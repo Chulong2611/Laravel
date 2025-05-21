@@ -17,7 +17,7 @@ use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\FavouriteController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\UserProfileController;
-
+use App\Http\Controllers\User\UserProductController;
 
 // ----------- PHAN USER ------------------
 
@@ -43,6 +43,11 @@ Route::prefix('')->group(function () {
     //search
     Route::get('/search', [HomeController::class, 'search'])->name('search');
 
+    // Product
+    Route::get('/products', [UserProductController::class, 'index'])->name('products');
+    Route::get('/product/{id}', [UserProductController::class, 'show'])->name('product.show');
+
+
 });
 
 Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
@@ -66,6 +71,7 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::get('/favorites', [FavouriteController::class, 'index'])->name('favorites');
     Route::post('/favorites/add/{product}', [FavouriteController::class, 'add'])->name('favorites.add');
     Route::delete('/favorites/remove/{product}', [FavouriteController::class, 'remove'])->name('favorites.remove');
+
 });
 
 

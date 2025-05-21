@@ -32,12 +32,12 @@
                 $total += $subtotal;
             @endphp
             <tr>
-                <td><strong>{{ $item->product->name }}</strong></td>
+                <td><strong>{{ $item->product->name }}</strong><br><span>Tồn kho: {{ $item->product->quantity }}</span></td>
                 <td>{{ number_format($item->product->price, 0, ',', '.') }} đ</td>
                 <td>
                      <form method="POST" id="quantity-form-{{$item->product->id}}" action="{{ route('user.cart.update', $item->product->id) }}" >
                         @csrf
-                    <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" class="form-control w-10 me-2 quantity-input" data-product-id="{{ $item->product->id }}">
+                    <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" max="{{ $item->product->quantity }}" class="form-control w-10 me-2 quantity-input" data-product-id="{{ $item->product->id }}">
                     </form>
                 </td>
                 <td> {{ number_format($item->product->price * $item->quantity, 0, ',', '.') }} đ</td>

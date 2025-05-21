@@ -5,7 +5,7 @@
 @section('content')
 <h3 class="mb-4">Thêm sản phẩm mới</h3>
 
-<form action="{{ route('admin.products.store') }}" method="POST" class="w-50">
+<form action="{{ route('admin.products.store') }}" method="POST" class="w-50" enctype="multipart/form-data">
     @csrf
 
     <div class="mb-3">
@@ -15,7 +15,7 @@
 
     <div class="mb-3">
         <label class="form-label">Danh mục</label>
-        <select name="category_id" class="form-select">
+        <select name="category_id" class="form-select" required>
             <option value="">-- Chọn danh mục --</option>
             @foreach ($categories as $cat)
             <option value="{{ $cat->id }}"
@@ -26,15 +26,24 @@
         </select>
     </div>
 
+    <div class="mb-3">
+        <label class="form-label">Mô tả</label>
+        <input type="text" name="description" class="form-control" value="{{ old('description') }}">
+    </div>
 
     <div class="mb-3">
         <label class="form-label">Giá (VNĐ)</label>
-        <input type="number" name="price" class="form-control" min="0" value="{{ old('price') }}">
+        <input type="number" name="price" class="form-control" min="0" required value="{{ old('price') }}">
     </div>
 
     <div class="mb-3">
         <label class="form-label">Số lượng</label>
-        <input type="number" name="quantity" class="form-control" min="0" value="{{ old('quantity') }}">
+        <input type="number" name="quantity" class="form-control" required min="0" value="{{ old('quantity') }}">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="image">Hình ảnh</label>
+        <input type="file" name="image" class="form-control">
     </div>
 
     <button type="submit" class="btn btn-success">Thêm mới</button>

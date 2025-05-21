@@ -17,6 +17,8 @@
                 <th>ID</th>
                 <th>Tên sản phẩm</th>
                 <th>Danh mục</th>
+                <th>Mô tả</th>
+                <th>hình ảnh</th>
                 <th>Giá</th>
                 <th>Số lượng</th>
                 <th class="text-center" style="width: 150px;">Thao tác</th>
@@ -28,6 +30,8 @@
                 <td>{{ $product->id }}</td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->category->name ?? '-' }}</td>
+                <td>{{ $product->description }}</td>
+                <td><img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid" style="max-height: 100px;"></td>
                 <td>{{ number_format($product->price) }}đ</td>
                 <td>{{ $product->quantity }}</td>
                 <td class="text-center">

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('fullname');
             $table->year('birth_year');
             $table->string('phone', 20);
-            $table->string('email'); // nếu dùng đăng nhập sau này
-            $table->string('password'); // nếu dùng auth
+            $table->string('email'); 
+            $table->string('password'); 
             $table->rememberToken();
             $table->timestamps();
         });

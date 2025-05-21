@@ -430,7 +430,6 @@ header {
   gap: 25px;
 } */
 .product-item {
-  position: relative;
   padding: 16px;
   background: #FFFFFF;
   border: 1px solid #FBFBFB;
@@ -440,9 +439,11 @@ header {
   transition: box-shadow 0.3s ease-out;
   text-align: center;
 }
+
 .product-item:hover {
-  box-shadow: 0px 21px 44px rgba(0, 0, 0, 0.08);
+  border:1px solid rgba(0, 0, 0, 0.8);
 }
+
 .product-item h3 {
   display: block;
   width: 100%;
@@ -453,12 +454,8 @@ header {
   color: #333333;
   margin: 0;
 }
-.product-item figure {
-  background: #F9F9F9;
-  border-radius: 12px;
-  text-align: center;
-}
-.product-item figure img {
+
+.product-item img {
   max-height: 210px;
   height: auto;
 }

@@ -27,34 +27,60 @@ class CartController extends Controller
         return back()->with('success', 'Đã thêm vào giỏ hàng');
     }*/
 
-    public function add($productId)
-    {
-        $item = CartItem::where('user_id',  Auth::id())
-            ->where('product_id', $productId)
-            ->first();
+    public function add(Request $request, $productId)
+{
+    $product = Product::findOrFail($productId);
+    $user = Auth::user();
 
-        if ($item) {
-            $item->increment('quantity');
-        } else {
-            CartItem::create([
-                'user_id' =>  Auth::id(),
-                'product_id' => $productId,
-                'quantity' => 1,
-            ]);
-        }
+    // Số lượng yêu cầu (mặc định là 1 nếu không có)
+    $quantity = $request->input('quantity', 1);
 
-        return redirect()->back()->with('success', 'Đã thêm sản phẩm vào giỏ hàng!');
+    // Kiểm tra số lượng đã có trong giỏ
+    $existing = CartItem::where('user_id', $user->id)
+        ->where('product_id', $productId)
+        ->first();
+
+    $existingQty = $existing ? $existing->quantity : 0;
+    $totalAfterAdd = $existingQty + $quantity;
+
+    if ($totalAfterAdd > $product->quantity) {
+        return back()->with('error', 'Không thể thêm quá số lượng tồn kho hiện có.');
     }
 
-    public function update(Request $request, Product $product)
-    {
-        $item = CartItem::where('user_id', Auth::id())->where('product_id', $product->id)->first();
-        if ($item) {
-            $item->update(['quantity' => $request->quantity]);
-            return back()->with('success', "Cập nhật số lượng của '{$product->name}' thành công");
-        }
-        return redirect()->back()->with('error', 'Không tìm thấy sản phẩm trong giỏ hàng');
+    if ($existing) {
+        $existing->quantity += $quantity;
+        $existing->save();
+    } else {
+        CartItem::create([
+            'user_id' => $user->id,
+            'product_id' => $productId,
+            'quantity' => $quantity,
+        ]);
     }
+
+    return back()->with('success', 'Đã thêm sản phẩm vào giỏ hàng');
+}
+
+    public function update(Request $request, $productId)
+{
+    $request->validate([
+        'quantity' => 'required|integer|min:1',
+    ]);
+
+    $product = Product::findOrFail($productId);
+    $cartItem = CartItem::where('user_id', Auth::id())
+        ->where('product_id', $productId)
+        ->firstOrFail();
+
+    if ($request->quantity > $product->quantity) {
+        return back()->with('error', 'Số lượng vượt quá tồn kho.');
+    }
+
+    $cartItem->quantity = $request->quantity;
+    $cartItem->save();
+
+    return back()->with('success', 'Cập nhật số lượng thành công.');
+}
 
     public function remove(Product $product)
     {
