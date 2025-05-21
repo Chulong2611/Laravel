@@ -26,6 +26,8 @@ class UserProfileController extends Controller
             'phone' => 'nullable|string|max:20',
             'birth_year' => 'nullable|integer|min:1900|max:' . now()->year,
         ]);
+        
+        /** @var \App\Models\User $user **/
     
         $user = Auth::user(); // lấy ra instance người dùng đang đăng nhập
     
@@ -51,6 +53,7 @@ class UserProfileController extends Controller
             'new_password' => 'required|string|min:6|confirmed',
         ]);
 
+        /** @var \App\Models\User $user **/
         $user = Auth::user();
 
         if (!Hash::check($request->current_password, $user->password)) {
@@ -62,6 +65,5 @@ class UserProfileController extends Controller
 
         return redirect()->route('user.profile')->with('success', 'Đổi mật khẩu thành công.');
     }
-    
     
 }

@@ -10,6 +10,17 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  flex: 1;
+}
+
 /*CSS dung cho header*/
 header {
     display: flex;
@@ -480,7 +491,7 @@ header {
   text-transform: capitalize;
   color: #222222;
 }
-
+/*
 .product-item .btn-cart {
   margin: 10px 5px;
   border: #111 1px solid;
@@ -493,7 +504,7 @@ header {
   background: #111;
 }
 
-/*
+
 .slick-prev::before,
 .slick-next::before {
   display: none !important;

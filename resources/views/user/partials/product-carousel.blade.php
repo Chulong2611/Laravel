@@ -171,7 +171,10 @@
           <div class="swiper-wrapper">
           @foreach($products as $product)
             <div class="product-item card swiper-slide">
-              <a href="#" class="btn-wishlist text-decoration-none"><i class="fa-solid fa-heart"></i></a>
+              <form method="POST" action="{{ route('user.favorites.add', $product->id) }}">
+    @csrf
+              <button type="submit" class="btn-wishlist text-decoration-none"><i class="fa-solid fa-heart"></i></button>
+              </form>
               <figure>
                 <a href="index.html" title="Product Title">
                 <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid mx-auto d-block" style="max-height: 250px;" alt="{{ $product->name }}">
@@ -179,7 +182,11 @@
               </figure>
               <h3>{{ $product->name }}</h3>
               <strong class="price text-success">{{ number_format($product->price, 0, ',', '.') }}₫</strong>              
-              <a href="#" class="btn-cart nav-link"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+              <form action="{{ route('user.cart.add', $product->id) }}" method="POST">
+    @csrf
+    <button type="submit" class="btn btn-sm btn-outline-primary mt-auto"><i class="fas fa-shopping-cart"></i> Add to Cart
+    </button>
+</form>
             </div>
           @endforeach          
           </div>

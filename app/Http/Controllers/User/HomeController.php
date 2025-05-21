@@ -33,7 +33,7 @@ class HomeController extends Controller
 
     $products = $query->get();
 
-    return view('user.search_results', compact('products'));
+    return view('user.search-results', compact('products'));
 }
 
 }

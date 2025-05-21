@@ -1,4 +1,4 @@
-@extends('layouts.app') {{-- layout chính của frontend --}}
+@extends('user.layouts.app') {{-- layout chính của frontend --}}
 
 @section('title', $product->name)
 
