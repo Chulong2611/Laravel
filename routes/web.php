@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\UserProfileController;
+<<<<<<< Updated upstream
 use Illuminate\Http\Request;
+=======
+use App\Http\Controllers\User\ProductUserController;
+>>>>>>> Stashed changes
 
 
 // ----------- PHAN USER ------------------
@@ -36,6 +40,9 @@ Route::prefix('')->group(function () {
 
     //search
     Route::get('/search', [HomeController::class, 'search'])->name('search');
+
+    //sản phẩm
+    Route::get('/products', [ProductUserController::class, 'index'])->name('products');
 
 });
 

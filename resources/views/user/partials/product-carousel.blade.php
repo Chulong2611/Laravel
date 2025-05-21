@@ -154,7 +154,7 @@
           <h2 class="section-title">Best selling products</h2>
 
           <div class="d-flex align-items-center">
-            <a href="#" class="btn-link text-decoration-none">View All Categories →</a>
+            <a href="{{ route('products') }}" class="btn-link text-decoration-none">View All Categories →</a>
             <div class="swiper-buttons">
               <button class="swiper-prev products-carousel-prev btn btn-primary">❮</button>
               <button class="swiper-next products-carousel-next btn btn-primary">❯</button>
@@ -166,22 +166,39 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-
         <div class="products-carousel swiper">
           <div class="swiper-wrapper">
-          @foreach($products as $product)
+            @foreach($products as $product)
             <div class="product-item card swiper-slide">
+<<<<<<< Updated upstream
               <a href="#" class="btn-wishlist text-decoration-none"><i class="fa-solid fa-heart"></i></a>
+=======
+              <form method="POST" action="{{ route('user.favorites.add', $product->id) }}">
+                @csrf
+                <button type="submit" class="btn-wishlist text-decoration-none">                 
+                    <i class="fa-solid fa-heart"></i>
+                  </button>
+              </form>
+>>>>>>> Stashed changes
               <figure>
                 <a href="index.html" title="Product Title">
-                <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid mx-auto d-block" style="max-height: 250px;" alt="{{ $product->name }}">
+                  <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid mx-auto d-block" style="max-height: 250px;" alt="{{ $product->name }}">
                 </a>
               </figure>
               <h3>{{ $product->name }}</h3>
+<<<<<<< Updated upstream
               <strong class="price text-success">{{ number_format($product->price, 0, ',', '.') }}₫</strong>              
               <a href="#" class="btn-cart nav-link"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+=======
+              <strong class="price text-success">{{ number_format($product->price, 0, ',', '.') }}₫</strong>
+              <form action="{{ route('user.cart.add', $product->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-sm btn-outline-primary mt-auto"><i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
+              </form>
+>>>>>>> Stashed changes
             </div>
-          @endforeach          
+            @endforeach
           </div>
         </div>
         <!-- / products-carousel -->
@@ -190,3 +207,4 @@
     </div>
   </div>
 </section>
+
