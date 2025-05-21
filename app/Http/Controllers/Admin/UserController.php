@@ -35,7 +35,7 @@ class UserController extends Controller
             'username' => 'required|unique:users',
             'fullname' => 'required',
             'birth_year' => 'nullable|digits:4|integer|min:1900|max:' . date('Y'),
-            'phone' => 'nullable|string|max:20',
+            'phone' => 'nullable|string|max:10',
         ]);
     
         User::create($request->only(['username', 'fullname', 'birth_year', 'phone']));
@@ -69,7 +69,7 @@ class UserController extends Controller
             'username' => 'required',
             'fullname' => 'required',
             'birth_year' => 'nullable|digits:4|integer|min:1900|max:' . date('Y'),
-            'phone' => 'nullable|string|max:20',
+            'phone' => 'nullable|string|max:10',
         ]);
     
         $user = User::findOrFail($id);

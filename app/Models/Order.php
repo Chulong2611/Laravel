@@ -10,8 +10,9 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'customer_name',
-        'customer_phone',
+        'user_id',
+        'address',
+        'phone',
         'total_amount',
         'order_date',
         'status',
@@ -20,6 +21,16 @@ class Order extends Model
     protected $casts = [
         'order_date' => 'date',
     ];
+
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     
 }

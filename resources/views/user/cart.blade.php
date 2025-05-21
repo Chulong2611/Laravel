@@ -59,33 +59,13 @@
                 <td class="text-end" colspan="4"><strong>Tổng tiền thanh toán:</strong></td>
                 <td class="text-start text-success fw-bold"><strong>{{ number_format($total, 0, ',', '.') }} đ</strong></td>
             </tr>
+            <tr>
+                <td class="text-end" colspan="6">
+                    <a href="{{ route('user.checkout') }}" class="btn btn-sm btn-primary w-60 h-10">Thanh toan</a>
+                </td>
+            </tr>
         </tfoot>
     </table>
-
-
-    <!--  <div class="card mb-3">
-        <div class="card-body d-flex justify-content-between align-items-center">
-            <div>
-                <strong>{{ $item->product->name }}</strong><br>
-                Giá: {{ number_format($item->product->price, 0, ',', '.') }} đ
-            </div>
-            <form method="POST" action="{{ route('user.cart.update', $item->product->id) }}" class="d-flex">
-                @csrf
-                <strong>Số lượng:</strong>
-                <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" class="form-control w-25 me-2 quantity-input" data-product-id="{{ $item->product->id }}">
-                <button type="submit" class="btn btn-success">Cập nhật</button>
-            </form>
-            <div class="total-price">
-                <strong>Thành tiền:</strong>
-                {{ number_format($item->product->price * $item->quantity, 0, ',', '.') }} đ
-            </div>
-            <form id="delete-form-{{ $item->product->id }}" method="POST" action="{{ route('user.cart.remove', $item->product->id) }}">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Xóa</button>
-            </form>
-        </div>
-    </div>-->
     @else
     <p>Giỏ hàng của bạn đang trống.</p>
     @endif

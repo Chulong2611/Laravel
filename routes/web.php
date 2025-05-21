@@ -18,6 +18,7 @@ use App\Http\Controllers\User\FavouriteController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\User\UserProductController;
+use App\Http\Controllers\User\CheckoutController;
 
 // ----------- PHAN USER ------------------
 
@@ -71,6 +72,10 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::get('/favorites', [FavouriteController::class, 'index'])->name('favorites');
     Route::post('/favorites/add/{product}', [FavouriteController::class, 'add'])->name('favorites.add');
     Route::delete('/favorites/remove/{product}', [FavouriteController::class, 'remove'])->name('favorites.remove');
+
+    // Checkout
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
 
 });
 

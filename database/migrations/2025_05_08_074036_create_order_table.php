@@ -9,8 +9,9 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('customer_name');
-            $table->string('customer_phone');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('address');
+            $table->string('phone');
             $table->decimal('total_amount', 12, 2);
             $table->date('order_date');
             $table->enum('status', ['pending', 'shipping', 'completed', 'failed'])->default('pending');
