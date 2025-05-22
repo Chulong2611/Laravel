@@ -176,7 +176,7 @@
               <a href="{{ route('product.show', $product->id) }}" class="stretched-link"></a>
               <form method="POST" action="{{ route('user.favorites.add', $product->id) }}">
                 @csrf
-                <button type="submit" class="btn-wishlist text-decoration-none"><i class="fa-solid fa-heart"></i></button>
+                <button type="submit" class="btn-wishlist text-decoration-none" style="z-index: 10;"><i class="fa-solid fa-heart"></i></button>
               </form>
               <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid mx-auto d-block" style="max-height: 150px;min-height: 150px;" alt="{{ $product->name }}">
               <div class="card-body d-flex flex-column">
