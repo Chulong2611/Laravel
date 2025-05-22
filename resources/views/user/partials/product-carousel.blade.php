@@ -174,10 +174,10 @@
             @foreach($products as $product)
             <div class="product-item card swiper-slide h-100  position-relative">
               <a href="{{ route('product.show', $product->id) }}" class="stretched-link"></a>
-              <form method="POST" action="{{ route('user.favorites.add', $product->id) }}">
-                @csrf
-                <button type="submit" class="btn-wishlist text-decoration-none" style="z-index: 10;"><i class="fa-solid fa-heart"></i></button>
-              </form>
+             <form method="POST" action="{{ route('user.favorites.remove', $product->id) }}">
+                            @csrf
+                            <button type="submit" class="btn-wishlist text-decoration-none" style="z-index: 10;"><i class="fa-solid fa-heart"></i></button>
+                        </form>
               <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid mx-auto d-block" style="max-height: 150px;min-height: 150px;" alt="{{ $product->name }}">
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{ $product->name }}</h5>
@@ -203,3 +203,45 @@
     </div>
   </div>
 </section>
+
+<!-- 
+@push('scripts')
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const favoriteButtons = document.querySelectorAll(".favorite-btn");
+
+    favoriteButtons.forEach(button => {
+        button.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const productId = this.dataset.productId;
+            const icon = this.querySelector('i');
+
+            fetch("{{ route('user.favorites.toggle') }}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ product_id: productId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'added') {
+                    icon.classList.remove('text-secondary');
+                    icon.classList.add('text-danger');
+                } else if (data.status === 'removed') {
+                    icon.classList.remove('text-danger');
+                    icon.classList.add('text-secondary');
+                }
+            })
+            .catch(err => console.log(err));
+        });
+    });
+});
+</script>
+
+@endpush
+
+-->

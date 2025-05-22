@@ -8,15 +8,14 @@
     <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    @if($favourites->count())
     <div class="row">
         <div class="products-carousel swiper">
             <div class="swiper-wrapper">
-                @foreach($favourites as $product)
+                @forelse($favorites as $product)
                 <div class="col-md-3">
                     <div class="product-item card swiper-slide h-100  position-relative">
                         <a href="{{ route('product.show', $product->id) }}" class="stretched-link"></a>
-                       <form method="POST" action="{{ route('user.favorites.remove', $product->id) }}">
+                        <form method="POST" action="{{ route('user.favorites.remove', $product->id) }}">
                             @csrf
                             <button type="submit" class="btn-wishlist text-decoration-none" style="z-index: 10;"><i class="fa-solid fa-heart"></i></button>
                         </form>
@@ -36,47 +35,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                    @endforeach
-                    @else
+                    @empty
                     <p>Không có sản phẩm yêu thích nào.</p>
-                    @endif
+                    @endforelse
+                </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
-
-<!--
-@push('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.favorite-btn').forEach(function(button) {
-        button.addEventListener('click', function () {
-            const productId = this.getAttribute('data-product-id');
-            const icon = this.querySelector('i');
-
-            fetch("{{ route('user.favorites.toggle') }}", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({ product_id: productId })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'added') {
-                    icon.classList.remove('text-secondary');
-                    icon.classList.add('text-danger');
-                } else {
-                    icon.classList.remove('text-danger');
-                    icon.classList.add('text-secondary');
-                }
-            });
-        });
-    });
-});
-</script>
-
-@endpush-->

@@ -70,8 +70,10 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
 
     // Favourites
     Route::get('/favorites', [FavouriteController::class, 'index'])->name('favorites');
-    Route::post('/favorites/add/{product}', [FavouriteController::class, 'add'])->name('favorites.add');
-    Route::delete('/favorites/remove/{product}', [FavouriteController::class, 'remove'])->name('favorites.remove');
+    //Route::post('/favorites/add/{product}', [FavouriteController::class, 'add'])->name('favorites.add');
+    //Route::delete('/favorites/remove/{product}', [FavouriteController::class, 'remove'])->name('favorites.remove');
+    Route::post('/favorite/toggle', [FavouriteController::class, 'toggle'])->name('favorites.toggle');
+
 
     // Checkout
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
