@@ -10,7 +10,7 @@
           <h2 class="section-title">{{$category->name}}</h2>
 
           <div class="d-flex align-items-center">
-            <a href="{{ route('products') }}" class="btn-link text-decoration-none">View All Products →</a>
+            <a href="{{ route('category.show', $category->id) }}" class="btn-link text-decoration-none">View All Products →</a>
             <div class="swiper-buttons">
               <button class="swiper-prev products-{{$category->id}}-carousel-prev btn btn-primary">❮</button>
               <button class="swiper-next products-{{$category->id}}-carousel-next btn btn-primary">❯</button>

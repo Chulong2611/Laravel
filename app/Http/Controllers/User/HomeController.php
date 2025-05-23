@@ -37,7 +37,16 @@ class HomeController extends Controller
             $query->where('category_id', $request->category_id);
         }
 
-        $products = $query->get();
+        // Sắp xếp nếu có
+        if ($request->has('sort')) {
+            if ($request->sort === 'price_asc') {
+                $query->orderBy('price', 'asc');
+            } elseif ($request->sort === 'price_desc') {
+                $query->orderBy('price', 'desc');
+            }
+        }
+
+        $products = $query->paginate(12);
 
         return view('user.search-results', compact('products'));
     }

@@ -31,14 +31,9 @@ class UserProductController extends Controller
         }
         // Lấy danh sách sản phẩm mới nhất (giới hạn 12 sản phẩm)
         $products = $query->paginate(12);
-        $categories = Category::all();
+        $categories = Category::all(); 
 
-          $favouriteProductIds = Auth::check()
-        ? Favourite::where('user_id', Auth::id())->pluck('product_id')->toArray()
-        : [];
-        
-
-        return view('user.products.product-list', compact('products', 'categories', 'favouriteProductIds'));
+        return view('user.products.product-list', compact('products', 'categories'));
     }
 
     public function show($id)

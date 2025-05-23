@@ -15,6 +15,17 @@ $categoryName = $category ? $category->name : null;
         trong <strong>{{ $categoryName }}</strong>
         @endif
     </h2>
+    <!-- Bộ lọc -->
+    <form method="GET" class="row mb-4">
+
+        <div class="col-md-2">
+            <select name="sort" class="form-select" onchange="this.form.submit()">
+                <option value="">-- Sắp xếp --</option>
+                <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Giá tăng dần</option>
+                <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Giá giảm dần</option>
+            </select>
+        </div>
+    </form>
     @if($products->isEmpty())
     <p>Không tìm thấy sản phẩm nào phù hợp.</p>
     @else
@@ -37,6 +48,7 @@ $categoryName = $category ? $category->name : null;
     </div>
     @endforeach
 </div>
+{{ $products->links() }}
 @endif
 </div>
 @endsection

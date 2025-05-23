@@ -16,6 +16,7 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\FavouriteController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\CategoriesController;
 use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\User\UserProductController;
 use App\Http\Controllers\User\CheckoutController;
@@ -47,6 +48,11 @@ Route::prefix('')->group(function () {
     // Product
     Route::get('/products', [UserProductController::class, 'index'])->name('products');
     Route::get('/product/{id}', [UserProductController::class, 'show'])->name('product.show');
+
+    //categories
+    Route::get('/categories', [CategoriesController::class, 'index'])->name('categories');
+    Route::get('/category/{id}', [CategoriesController::class, 'show'])->name('category.show');
+
 
 
 });
