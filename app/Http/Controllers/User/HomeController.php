@@ -12,35 +12,33 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // Lấy danh sách sản phẩm mới nhất (giới hạn 8 sản phẩm)
-        $products = Product::latest()->take(8)->get();
-
-        //test
         $newProducts = Product::inRandomOrder()->take(8)->get(); // Tạm thời giả lập
 
         $categories = Category::latest()->take(10)->get();
 
+        //lay het danh sach danh muc 
+         $cateProducts = Category::with(['products' => function ($q) {
+        $q->take(15); // lấy 15 sản phẩm mỗi danh mục
+        }])->inRandomOrder()->take(3)->get();
 
-       
 
-        return view('user.home', compact('newProducts', 'categories' ));
+        return view('user.home', compact('newProducts', 'categories', 'cateProducts'));
     }
 
     public function search(Request $request)
-{
-    $query = Product::query();
+    {
+        $query = Product::query();
 
-    if ($request->filled('keyword')) {
-        $query->where('name', 'like', '%' . $request->keyword . '%');
+        if ($request->filled('keyword')) {
+            $query->where('name', 'like', '%' . $request->keyword . '%');
+        }
+
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->category_id);
+        }
+
+        $products = $query->get();
+
+        return view('user.search-results', compact('products'));
     }
-
-    if ($request->filled('category_id')) {
-        $query->where('category_id', $request->category_id);
-    }
-
-    $products = $query->get();
-
-    return view('user.search-results', compact('products'));
-}
-
 }

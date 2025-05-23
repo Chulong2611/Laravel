@@ -1,31 +1,29 @@
 
 
+@foreach($cateProducts as $category)
 <section class="py-5 overflow-hidden">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
         <div class="section-header d-flex flex-wrap justify-content-between my-5">
 
-          <h2 class="section-title">Best selling products </h2>
+          <h2 class="section-title">{{$category->name}}</h2>
 
           <div class="d-flex align-items-center">
             <a href="{{ route('products') }}" class="btn-link text-decoration-none">View All Products →</a>
             <div class="swiper-buttons">
-              <button class="swiper-prev products-carousel-prev btn btn-primary">❮</button>
-              <button class="swiper-next products-carousel-next btn btn-primary">❯</button>
+              <button class="swiper-prev products-{{$category->id}}-carousel-prev btn btn-primary">❮</button>
+              <button class="swiper-next products-{{$category->id}}-carousel-next btn btn-primary">❯</button>
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
-
     <div class="row">
       <div class="col-md-12">
-        <div class="products-carousel swiper">
+        <div class=" products-{{$category->id}}-carousel swiper" >
           <div class="swiper-wrapper">
-            @foreach($products as $product)
+            @foreach($category->products as $product)
             <div class="product-item card swiper-slide h-100 position-relative" style="min-height: 350px; max-height: 350px">
               <a href="{{ route('product.show', $product->id) }}" class="stretched-link"></a>
 
@@ -61,5 +59,38 @@
     </div>
   </div>
 </section>
+
+@push('scripts')
+<script>
+     $(document).ready(function() {
+        var cate_products_swiper = new Swiper(".products-{{$category->id}}-carousel", {
+      slidesPerView: 5,
+      spaceBetween: 30,
+      speed: 500,
+      navigation: {
+        nextEl: ".products-{{$category->id}}-carousel-next",
+        prevEl: ".products-{{$category->id}}-carousel-prev",
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        991: {
+          slidesPerView: 4,
+        },
+        1500: {
+          slidesPerView: 6,
+        },
+      }
+    });
+  });
+</script>
+@endpush
+@endforeach
+
+
 
 
