@@ -57,6 +57,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $category = Category::findOrFail($id);
+        // Kiểm tra xung đột
+        if ($request->input('last_updated') !== $category->updated_at->toISOString()) {
+            return redirect()->back()->with(['error' => 'Nội dung sản phẩm đã được thay đổi. Vui lòng thao tác lại.'])->withInput();
+        }
+
         $request->validate(['name' => 'required']);
         $category = Category::findOrFail($id);
         $category->update($request->only('name'));

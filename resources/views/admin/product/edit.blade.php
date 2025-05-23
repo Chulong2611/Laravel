@@ -5,6 +5,13 @@
 @section('content')
 <h3 class="mb-4">Chỉnh sửa sản phẩm</h3>
 
+@if(session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" id="success-alert" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+
 <form action="{{ route('admin.products.update', $product->id) }}" method="POST" class="w-50" enctype="multipart/form-data">
     @csrf
     @method('PUT')
@@ -50,6 +57,9 @@
     <input type="file" name="image" class="form-control">
 
     </div>
+
+    <input type="hidden" name="last_updated" value="{{ $product->updated_at->toISOString() }}">
+
 
     <button type="submit" class="btn btn-primary">Cập nhật</button>
     <a href="{{ route('admin.products') }}" class="btn btn-secondary ms-2">Quay lại</a>

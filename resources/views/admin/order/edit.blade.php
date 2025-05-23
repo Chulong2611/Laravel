@@ -5,6 +5,14 @@
 @section('content')
 <h3 class="mb-4">Chỉnh sửa đơn hàng</h3>
 
+
+@if(session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" id="success-alert" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+
 <form action="{{ route('admin.orders.update', $order->id) }}" method="POST" class="w-50">
     @csrf
     @method('PUT')
@@ -38,6 +46,8 @@
             <option value="failed" {{ old('status', $order->status) == 'failed' ? 'selected' : '' }}>Thất bại</option>
         </select>
     </div>
+
+    <input type="hidden" name="last_updated" value="{{ $order->updated_at->toISOString() }}">
 
     <button type="submit" class="btn btn-primary">Cập nhật</button>
     <a href="{{ route('admin.orders') }}" class="btn btn-secondary ms-2">Quay lại</a>

@@ -10,14 +10,23 @@
         @method('PUT')
 
         <div class="mb-3">
-            <label class="form-label">Username</label>
-            <input type="text" name="username" class="form-control" value="{{ $user->username }}">
-        </div>
+        <label class="form-label">Username</label>
+        <input type="text" name="username" class="form-control" maxlength="20" pattern="[A-Za-z0-9]{1,20}"
+            title="Tối đa 20 ký tự, chỉ chữ và số" value="{{ old('username', $user->username) }}" required>
+        @error('username')
+        <div style="color:red;">{{ $message }}</div>
+        @enderror
+    </div>
 
         <div class="mb-3">
-            <label class="form-label">Họ tên</label>
-            <input type="text" name="fullname" class="form-control" value="{{ $user->fullname }}">
-        </div>
+        <label class="form-label">Họ tên</label>
+        <input type="text" name="fullname" class="form-control" maxlength="40"
+            pattern="[A-Za-zÀ-ÿa-zA-Z\s]+"
+            title="Tối đa 40 ký tự, chỉ chữ và khoảng trắng" value="{{ old('fullname', $user->fullname) }}" required>
+        @error('fullname')
+        <div style="color:red;">{{ $message }}</div>
+        @enderror
+    </div>
 
         <div class="mb-3">
     <label class="form-label">Năm sinh</label>
@@ -32,9 +41,23 @@
 </div>
 
         <div class="mb-3">
-            <label class="form-label">SĐT</label>
-            <input type="text" name="phone" class="form-control" value="{{ $user->phone }}">
-        </div>
+        <label class="form-label">SĐT</label>
+        <input type="text" name="phone" class="form-control" maxlength="10"
+            pattern="0[0-9]{9}"
+            title="Bắt đầu bằng 0, có 10 chữ số" value="{{ old('phone', $user->phone) }}">
+        @error('phone')
+        <div style="color:red;">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" maxlength="100" class="form-control"
+        value="{{ old('password', $user->password) }}">
+        @error('password')
+        <div style="color:red;">{{ $message }}</div>
+        @enderror
+    </div>
 
         <button type="submit" class="btn btn-primary">Cập nhật</button>
         <a href="{{ route('admin.users') }}" class="btn btn-secondary ms-2">Quay lại</a>
