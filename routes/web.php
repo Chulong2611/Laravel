@@ -153,8 +153,8 @@ Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(functi
 
     /** order */
     Route::get('/orders', [OrderController::class, 'index'])->name('orders');
-    Route::get('/order/create', [OrderController::class, 'create'])->name('orders.create');
-    Route::post('/order', [OrderController::class, 'store'])->name('orders.store');
+    // Route::get('/order/create', [OrderController::class, 'create'])->name('orders.create');
+    // Route::post('/order', [OrderController::class, 'store'])->name('orders.store');
 
     Route::get('/order/{id}/edit', [OrderController::class, 'edit'])->name('orders.edit');
     Route::put('/order/{id}', [OrderController::class, 'update'])->name('orders.update');
