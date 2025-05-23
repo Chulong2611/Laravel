@@ -85,6 +85,6 @@ class CartController extends Controller
     public function remove(Product $product)
     {
         CartItem::where('user_id', Auth::id())->where('product_id', $product->id)->delete();
-        return back()->with('success', 'Đã xoá khỏi giỏ hàng');
+        return back()->with('success', 'Đã xoá ' .$product->name. ' khỏi giỏ hàng');
     }
 }

@@ -5,6 +5,13 @@
 @section('content')
 <h3 class="mb-4">Thêm sản phẩm mới</h3>
 
+@if(session('error'))
+<div class="alert alert-danger alert-dismissible fade show" id="success-alert" role="alert">
+    {{ session('error') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
 <form action="{{ route('admin.products.store') }}" method="POST" class="w-50" enctype="multipart/form-data">
     @csrf
 

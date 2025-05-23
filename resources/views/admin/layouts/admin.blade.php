@@ -31,5 +31,14 @@
 
     {{-- Bootstrap JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    setTimeout(function() {
+        const thongbao = document.getElementById('success-alert');
+        if (thongbao) {
+            const bsAlert = bootstrap.Alert.getOrCreateInstance(thongbao);
+            bsAlert.close();
+        }
+    }, 3000);
+</script>
 </body>
 </html>

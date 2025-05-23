@@ -53,7 +53,10 @@ class OrderController extends Controller
         
         $order = Order::findOrFail($id);
         $order->update($request->all());
-        
+        // Kiểm tra xung đột
+        if ($request->input('last_updated') !== $order->updated_at->toISOString()) {
+            return redirect()->back()->with(['error' => 'Nội dung sản phẩm đã được thay đổi. Vui lòng thao tác lại.'])->withInput();
+        }
 
         return redirect()->route('admin.orders')->with('success', 'Cập nhật đơn hàng thành công!');
     }

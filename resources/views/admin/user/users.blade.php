@@ -9,6 +9,12 @@
     <i class="fa fa-plus me-1"></i> Thêm người dùng
 </a>
     </div>
+ @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" id="success-alert" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
 
     <div class="table-responsive">
         <table class="table table-bordered table-hover align-middle">
@@ -18,6 +24,7 @@
                     <th>Username</th>
                     <th>Họ tên</th>
                     <th>Năm sinh</th>
+                    <th>Email</th>
                     <th>SĐT</th>
                     <th class="text-center" style="width: 150px;">Thao tác</th>
                 </tr>
@@ -29,6 +36,7 @@
                         <td>{{ $user->username ?? '-' }}</td>
                         <td>{{ $user->fullname ?? '-' }}</td>
                         <td>{{ $user->birth_year ?? '-' }}</td>
+                        <td>{{ $user->email ?? '-' }}</td>
                         <td>{{ $user->phone ?? '-' }}</td>
                         <td class="text-center">
                         <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-sm btn-primary me-1">

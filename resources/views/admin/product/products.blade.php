@@ -10,6 +10,14 @@
     </a>
 </div>
 
+@if(session('success'))
+<div class="alert alert-success alert-dismissible fade show" id="success-alert" role="alert">
+    {{ session('success') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
+
 <div class="table-responsive">
     <table class="table table-bordered table-hover align-middle">
         <thead class="table-light">
@@ -55,4 +63,5 @@
         </tbody>
     </table>
 </div>
+{{ $products->links() }}
 @endsection

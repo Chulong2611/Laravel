@@ -8,6 +8,18 @@
     <a href="{{ route('admin.categories.create') }}" class="btn btn-success"><i class="fa fa-plus me-1"></i> Thêm danh mục</a>
 </div>
 
+@if(session('success'))
+<div class="alert alert-success alert-dismissible fade show" id="success-alert" role="alert">
+    {{ session('success') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+@if(session('error'))
+<div class="alert alert-danger alert-dismissible fade show" id="success-alert" role="alert">
+    {{ session('error') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 <div class="table-responsive">
     <table class="table table-bordered">
         <thead class="table-light">
