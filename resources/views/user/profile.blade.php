@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body">
                     @if(session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <div class="alert alert-success alert-dismissible fade show" id="success-alert" role="alert">
                         {{ session('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
@@ -44,6 +44,13 @@
                     </div>
 
                     <div class="row mb-3">
+                        <label class="col-sm-4 fw-bold">Địa chỉ:</label>
+                        <div class="col-sm-8">
+                            {{ Auth::user()->address ?? 'Chưa cập nhật' }}
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
                         <label class="col-sm-4 fw-bold">Năm sinh:</label>
                         <div class="col-sm-8">
                             {{ Auth::user()->birth_year ?? 'Chưa cập nhật' }}
@@ -60,3 +67,15 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    setTimeout(function() {
+        const thongbao = document.getElementById('success-alert');
+        if (thongbao) {
+            const bsAlert = bootstrap.Alert.getOrCreateInstance(thongbao);
+            bsAlert.close();
+        }
+    }, 3000);
+</script>
+@endpush

@@ -22,34 +22,12 @@
 
         <div class="category-carousel swiper">
           <div class="swiper-wrapper">
+            @foreach($categories as $category)
             <a href="index.html" class="nav-link category-item swiper-slide">
               <img src="{{ asset('storage/uploads/categories/icon-vegetables.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
+              <h3 class="category-title">{{ $category->name }}</h3>
             </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('storage/uploads/categories/icon-vegetables.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Breads & Sweets</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('storage/uploads/categories/icon-vegetables.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('storage/uploads/categories/icon-vegetables.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('storage/uploads/categories/icon-vegetables.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('storage/uploads/categories/icon-vegetables.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
-            <a href="index.html" class="nav-link category-item swiper-slide">
-              <img src="{{ asset('storage/uploads/categories/icon-vegetables.png') }}" alt="Category Thumbnail">
-              <h3 class="category-title">Fruits & Veges</h3>
-            </a>
+            @endforeach
           </div>
         </div>
 

@@ -13,11 +13,11 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
+        for ($i=1; $i <=30; $i++) { 
         Category::insert([
-        ['name' => 'test1'],
-        ['name' => 'test2'],
-        ['name' => 'test3'],
-        ['name' => 'test4'],
-        ]);     
+                ['name' => 'test ' .$i],
+                ['image' => 'uploads/categories/'.rand(1,6).'.png']
+            ]);     
+        }
     }
 }

@@ -70,10 +70,8 @@
                     <!-- Username -->
                     <div class="mb-3">
                         <label class="form-label">Username</label>
-                        <input type="text" name="username" maxlength="20"
-                            pattern="[A-Za-z0-9]{1,20}"
-                            title="Chỉ chữ và số, không khoảng trắng, không ký tự đặc biệt" class="form-control" value="{{ old('username'}}"
-                            required>
+                        <input type="text" name="username" maxlength="20" pattern="[A-Za-z0-9]{1,20}"
+                            title="Tối đa 20 ký tự, chỉ chữ và số" class="form-control" value="{{ old('username') }}" required>
                         @error('username')
                         <div style="color:red;">{{ $message }}</div>
                         @enderror
@@ -103,8 +101,8 @@
                         @enderror
                     </div>
 
-                    
-                    <!-- birthyear -->
+
+                    <!-- birth year -->
                     <div class="mb-3">
                         <label class="form-label">Năm sinh</label>
                         <select name="birth_year" class="form-control" required>
@@ -119,34 +117,34 @@
                     <div class="mb-3">
                         <label class="form-label">Địa chỉ</label>
                         <input type="text" name="address" maxlength="50" pattern="[A-Za-zÀ-ÿa-zA-Z\s]+"
-                            title="Tối đa 50 ký tự, chỉ chữ và khoảng trắng" class="form-control" value="{{ old('address') }}" required>
+                            title="Tối đa 50 ký tự, chỉ chữ và khoảng trắng" class="form-control" value="{{ old('address') }}">
                         @error('address')
                         <div style="color:red;">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    
+
                     <!-- email -->
                     <div class="mb-3">
                         <label class="form-label">Email</label>
-                        <input type="email" name="email" maxlength="30"
+                        <input type="email" name="email" maxlength="30" class="form-control"
                             pattern=".{1,30}" title="Email tối đa 30 ký tự và phải có @"
-                            value="{{ old('email') }}" required>
+                            value="{{ old('email') }}">
                         @error('email')
                         <div style="color:red;">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    
+
                     <!-- email confirm -->
                     <div class="mb-3">
                         <label class="form-label">Xác nhận Email</label>
                         <input type="email" name="email_confirmation" maxlength="30"
-                            pattern=".{1,30}" title="Email tối đa 30 ký tự và phải có @" class="form-control" value="{{ old('email_confirmation') }}" required>
-                    @error('email_confirmation')
+                            pattern=".{1,30}" title="Email tối đa 30 ký tự và phải có @" class="form-control" value="{{ old('email_confirmation') }}">
+                        @error('email_confirmation')
                         <div style="color:red;">{{ $message }}</div>
                         @enderror
-                        </div>
+                    </div>
 
                     <!-- Password -->
                     <div class="mb-3">

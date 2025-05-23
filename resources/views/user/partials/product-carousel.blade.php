@@ -171,7 +171,7 @@
         <div class="products-carousel swiper">
           <div class="swiper-wrapper">
             @foreach($products as $product)
-            <div class="product-item card swiper-slide h-100  position-relative">
+            <div class="product-item card swiper-slide h-100 position-relative" style="min-height: 350px; max-height: 350px">
               <a href="{{ route('product.show', $product->id) }}" class="stretched-link"></a>
 
               <!-- Nút yêu thích -->
@@ -181,12 +181,12 @@
                         </form>
 
 
-              <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid mx-auto d-block" style="max-height: 150px;min-height: 150px;" alt="{{ $product->name }}">
-              <div class="card-body d-flex flex-column">
-                <h5 class="card-title">{{ $product->name }}</h5>
+              <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid mx-auto d-block" style="max-height: 150px; min-height: 150px;" alt="{{ $product->name }}">
+              <div class="card-body d-flex flex-column position-absolute">
+                <h5 class="card-title mt-1">{{ $product->name }}</h5>
                 <p class="card-text text-success fw-bold">{{ number_format($product->price, 0, ',', '.') }}₫</p>
 
-                <div class="mt-auto" style="z-index: 10; position: relative;">
+                <div class="mt-auto" style="z-index: 10">
                   <form action="{{ route('user.cart.add', $product->id) }}" method="POST">
                     @csrf
                     <input type="hidden" name="quantity" value="1">
