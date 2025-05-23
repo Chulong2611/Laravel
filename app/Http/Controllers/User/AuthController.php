@@ -40,7 +40,7 @@ class AuthController extends Controller
     // Hiển thị form đăng ký
     public function showRegisterForm()
     {
-        return view('user.register'); // Tạo file resources/views/user/auth/register.blade.php
+        return view('user.register');
     }
 
     // Xử lý đăng ký
