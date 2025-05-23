@@ -14,26 +14,26 @@ class OrderController extends Controller
         return view('admin.order.orders', compact('orders'));
     }
 
-    public function create()
-    {
-        return view('admin.order.create');
-    }
+    // public function create()
+    // {
+    //     return view('admin.order.create');
+    // }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'customer_name' => 'required|string|max:255',
-            'customer_phone' => 'required|string|max:20',
-            'total_amount' => 'required|numeric|min:0',
-            'order_date' => 'required|date',
-            'status' => 'required|in:pending,shipping,completed,failed',
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'customer_name' => 'required|string|max:255',
+    //         'customer_phone' => 'required|string|max:20',
+    //         'total_amount' => 'required|numeric|min:0',
+    //         'order_date' => 'required|date',
+    //         'status' => 'required|in:pending,shipping,completed,failed',
+    //     ]);
 
-        Order::create($request->all());
+    //     Order::create($request->all());
         
 
-        return redirect()->route('admin.orders')->with('success', 'Thêm đơn hàng thành công!');
-    }
+    //     return redirect()->route('admin.orders')->with('success', 'Thêm đơn hàng thành công!');
+    // }
 
     public function edit($id)
     {
