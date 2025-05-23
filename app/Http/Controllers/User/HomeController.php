@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,10 +18,12 @@ class HomeController extends Controller
         //test
         $newProducts = Product::inRandomOrder()->take(8)->get(); // Tạm thời giả lập
 
+        $categories = Category::latest()->take(10)->get();
+
 
        
 
-        return view('user.home', compact('newProducts',  ));
+        return view('user.home', compact('newProducts', 'categories' ));
     }
 
     public function search(Request $request)

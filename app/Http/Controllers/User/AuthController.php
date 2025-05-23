@@ -47,54 +47,62 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $data = $request->validate([
-        'username' => [
-            'required',
-            'string',
-            'max:20',
-            'regex:/^[A-Za-z0-9]+$/',
-            'unique:users,username'
-        ],
-        'fullname' => [
-            'required',
-            'string',
-            'max:40',
-            'regex:/^[\p{L}\s]+$/u' // Cho phép ký tự unicode và khoảng trắng
-        ],
-        'phone' => [
-            'required',
-            'regex:/^0(?!0{9}$)[0-9]{9}$/'
-        ],
-        'birth_year' => [
-            'required',
-            'integer',
-            'min:1900',
-            'max:' . now()->year
-        ],
-        'email' => [
-            'required',
-            'string',
-            'email',
-            'max:30',
-            'confirmed',
-            'unique:users,email'
-        ],
-        'password' => [
-            'required',
-            'string',
-            'min:6',
-            'max:20',
-            'regex:/^(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{6,20}$/',
-            'confirmed'
-        ],
-    ]);
+            'username' => [
+                'required',
+                'string',
+                'max:20',
+                'regex:/^[A-Za-z0-9]+$/',
+                'unique:users,username'
+            ],
+
+            'fullname' => [
+                'required',
+                'string',
+                'max:40',
+                'regex:/^[\p{L}\s]+$/u' // Cho phép ký tự unicode và khoảng trắng
+            ],
+
+            'address' => [
+                'string',
+                'max:50',
+                'regex:/^[\p{L}\s]+$/u' // Cho phép ký tự unicode và khoảng trắng
+            ],
+
+            'phone' => [
+                'required',
+                'regex:/^0(?!0{9}$)[0-9]{9}$/'
+            ],
+            'birth_year' => [
+                'required',
+                'integer',
+                'min:1900',
+                'max:' . now()->year
+            ],
+            'email' => [
+                'string',
+                'email',
+                'max:30',
+                'confirmed',
+                'unique:users,email'
+            ],
+            'password' => [
+                'required',
+                'string',
+                'min:6',
+                'max:20',
+                'regex:/^(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{6,20}$/',
+                'confirmed'
+            ],
+        ]);
 
         $user = User::create([
-             'username' => $request->username,
-        'fullname' =>$request->fullname,
-        'phone' => $request->phone,
-        'birth_year' => $request->birth_year,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
+            'username' => $request->username,
+            'fullname' => $request->fullname,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'birth_year' => $request->birth_year,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
         ]);
 
         Auth::login($user);

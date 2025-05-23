@@ -47,7 +47,7 @@
                         <h5 class="card-title">{{ $product->name }}</h5>
                         <p class="card-text text-success fw-bold">{{ number_format($product->price, 0, ',', '.') }}₫</p>
                         
-                        <div class="mt-auto">
+                        <div class="mt-auto" style="z-index: 10;">
                             <form action="{{ route('user.cart.add', $product->id) }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="quantity" value="1">
