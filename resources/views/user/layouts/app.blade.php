@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     
     <!--link css-->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Slick carousel -->

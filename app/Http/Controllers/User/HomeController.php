@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -16,7 +17,10 @@ class HomeController extends Controller
         //test
         $newProducts = Product::inRandomOrder()->take(8)->get(); // Tạm thời giả lập
 
-        return view('user.home', compact('newProducts'));
+
+       
+
+        return view('user.home', compact('newProducts',  ));
     }
 
     public function search(Request $request)

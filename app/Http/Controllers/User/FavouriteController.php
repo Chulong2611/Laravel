@@ -14,10 +14,13 @@ class FavouriteController extends Controller
     /** @var \App\Models\User $user **/
     public function index()
     {
+
+
         $favourites = Favourite::with('product')->where('user_id', Auth::id())->get();
-        return view('user.favorites', compact('favourites'));
+        return view('user.favourites', compact('favourites'));
+        
     }
-    
+
     public function add($productId)
     {
         $user = Auth::user();
@@ -34,7 +37,6 @@ class FavouriteController extends Controller
         }
 
         return back()->with('success', 'Đã thêm vào danh sách yêu thích.');
-
     }
 
     public function remove(Product $product)
@@ -43,32 +45,5 @@ class FavouriteController extends Controller
         return back()->with('success', 'Đã xoá khỏi yêu thích');
     }
 
-   /* public function toggle(Request $request)
-    {
-        if (!Auth::check()) {
-            return response()->json(['status' => 'unauthenticated'], 401);
-        }
 
-        $request->validate([
-            'product_id' => 'required|integer|exists:products,id',
-        ]);
-
-        $productId = $request->product_id;
-        $userId = Auth::id();
-
-        $favourite = Favourite::where('user_id', $userId)
-            ->where('product_id', $productId)
-            ->first();
-
-        if ($favourite) {
-            $favourite->delete();
-            return response()->json(['status' => 'removed']);
-        } else {
-            Favourite::create([
-                'user_id' => $userId,
-                'product_id' => $productId,
-            ]);
-            return response()->json(['status' => 'added']);
-        }
-    }*/
 }

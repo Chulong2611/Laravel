@@ -69,10 +69,10 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::delete('/cart/remove/{product}', [CartController::class, 'remove'])->name('cart.remove');
 
     // Favourites
-    Route::get('/favorites', [FavouriteController::class, 'index'])->name('favorites');
-    //Route::post('/favorites/add/{product}', [FavouriteController::class, 'add'])->name('favorites.add');
-    //Route::delete('/favorites/remove/{product}', [FavouriteController::class, 'remove'])->name('favorites.remove');
-    Route::post('/favorite/toggle', [FavouriteController::class, 'toggle'])->name('favorites.toggle');
+    Route::get('/favourites', [FavouriteController::class, 'index'])->name('favourites');
+    Route::post('/favourites/add/{product}', [FavouriteController::class, 'add'])->name('favourites.add');
+    Route::delete('/favourites/remove/{product}', [FavouriteController::class, 'remove'])->name('favourites.remove');
+
 
 
     // Checkout
