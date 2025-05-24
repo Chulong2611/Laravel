@@ -13,6 +13,9 @@ class AuthController extends Controller
     // Hiển thị form đăng nhập
     public function showLoginForm()
     {
+        if (Auth::check()) {
+            return redirect()->route('user.home');
+        }
         return view('user.login'); // Tạo file resources/views/user/auth/login.blade.php
     }
 

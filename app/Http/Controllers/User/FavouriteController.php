@@ -39,13 +39,12 @@ class FavouriteController extends Controller
         return redirect()->route('user.favourites')->with('success', 'Đã thêm vào danh sách yêu thích.');
     }
 
-    public function remove($productId)
+    public function remove(Product $product)
     {
-        $user = Auth::user();
-        $items = Favourite::where('user_id', $user->id)->where('product_id', $productId);
-        $items->delete();
+        Favourite::where('user_id', Auth::id())->where('product_id', $product->id)->delete();
         return redirect()->back()->with('success', 'Đã xoá khỏi yêu thích');
     }
+
 
 
 }
