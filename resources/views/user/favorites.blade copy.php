@@ -15,7 +15,7 @@
                 <div class="col-md-3">
                     <div class="product-item card swiper-slide h-100  position-relative">
                         <a href="{{ route('product.show', $product->id) }}" class="stretched-link"></a>
-                        <form method="POST" action="{{ route('user.favourites.remove', $product->id) }}">
+                        <form method="POST" action="{{ route('user.favourites.remove', $product->product) }}">
                             @csrf
                             <button type="submit" class="btn-wishlist text-decoration-none" style="z-index: 10;"><i class="fa-solid fa-heart"></i></button>
                         </form>

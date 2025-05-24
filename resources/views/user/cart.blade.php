@@ -37,7 +37,7 @@
                 <td>
                      <form method="POST" id="quantity-form-{{$item->product->id}}" action="{{ route('user.cart.update', $item->product->id) }}" >
                         @csrf
-                    <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" max="{{ $item->product->quantity }}" class="form-control w-10 me-2 quantity-input" data-product-id="{{ $item->product->id }}">
+                    <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" data-max="{{ $item->product->quantity }}" class="form-control w-10 me-2 quantity-input" data-product-id="{{ $item->product->id }}">
                     </form>
                 </td>
                 <td> {{ number_format($item->product->price * $item->quantity, 0, ',', '.') }} đ</td>
@@ -81,6 +81,7 @@
             input.addEventListener('change', function() {
                 const value = parseInt(this.value);
                 const productId = this.dataset.productId;
+const maxQuantity = parseInt(this.dataset.max);
 
                 if (value <= 0) {
                     const confirmDelete = confirm('Bạn đã nhập số lượng là 0. Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không?');
@@ -92,10 +93,11 @@
                         // Nếu không, đưa giá trị về 1
                         this.value = 1;
                     }
-                } else if (value > 200) {
-                   alert('Số lượng không được vượt quá 200');
-                    this.value = 200;
-                }
+                } 
+                else if (value > maxQuantity) {
+                   alert(`Số lượng không được vượt quá ${maxQuantity}`);
+                    this.value = maxQuantity;
+               }
             });
         });
     });
