@@ -16,9 +16,10 @@
                 <div class="col-md-3">
                     <div class="product-item card swiper-slide h-100  position-relative">
                         <a href="{{ route('product.show', $product->id) }}" class="stretched-link"></a>
-                       <form method="POST" action="{{ route('user.favourites.remove', $product->id) }}">
+                       <form method="post" action="{{ route('user.favourites.remove', $product->id) }}">
                             @csrf
-                            <button type="submit" class="btn-wishlist text-decoration-none" style="z-index: 10;"><i class="fa-solid fa-heart"></i></button>
+                            @method('DELETE')
+                            <button type="submit" class="btn-wishlist text-decoration-none" style="z-index: 10; color: red;"><i class="fa-solid fa-heart"></i></button>
                         </form>
                         <img src="{{ asset('storage/' . $product->product->image) }}" class="img-fluid mx-auto d-block" style="max-height: 150px;min-height: 150px;" alt="{{ $product->name }}">
                         <div class="card-body d-flex flex-column">

@@ -7,11 +7,11 @@
 
 
 @if(session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" id="success-alert" role="alert">
-                        {{ session('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    @endif
+<div class="alert alert-danger alert-dismissible fade show" id="success-alert" role="alert">
+    {{ session('error') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 
 <form action="{{ route('admin.orders.update', $order->id) }}" method="POST" class="w-50">
     @csrf
@@ -19,12 +19,12 @@
 
     <div class="mb-3">
         <label class="form-label">Tên khách hàng</label>
-        <input type="text" name="customer_name" class="form-control" required value="{{ old('customer_name', $order->customer_name) }}">
+        <input type="text" name="customer_name" class="form-control" required value="{{ old('customer_name', $order->user->fullname) }}">
     </div>
 
     <div class="mb-3">
         <label class="form-label">Số điện thoại</label>
-        <input type="text" name="customer_phone" class="form-control" required value="{{ old('customer_phone', $order->customer_phone) }}">
+        <input type="text" name="customer_phone" class="form-control" required value="{{ old('customer_phone', $order->user->phone) }}">
     </div>
 
     <div class="mb-3">
